@@ -8,6 +8,7 @@ import Profile from './routes/profile';
 import Login from './routes/login';
 import CreateAccount from './routes/create-account';
 import LoadingScreen from './components/Loading-screen';
+import { auth } from '../firebase';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,11 @@ const GlobalStyles = createGlobalStyle`
     * {
       box-sizing: border-box;
     }
-    
+    body {
+      background-color: #DDA94B;
+      color: #1E4174;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
     `;
 
 const Wrapper = styled.div`
@@ -51,6 +56,7 @@ const Wrapper = styled.div`
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const init = async () => {
+    await auth.authStateReady();
     setIsLoading(false);
   };
 
