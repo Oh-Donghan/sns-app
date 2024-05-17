@@ -9,11 +9,16 @@ import Login from './routes/login';
 import CreateAccount from './routes/create-account';
 import LoadingScreen from './components/Loading-screen';
 import { auth } from '../firebase';
+import ProtectedRoute from './components/Protected_route';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: '',
@@ -36,16 +41,19 @@ const router = createBrowserRouter([
 ]);
 
 const GlobalStyles = createGlobalStyle`
-    ${reset};
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      background-color: #DDA94B;
-      color: #1E4174;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-    `;
+  ${reset};
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #DDA94B;
+    color: #1E4174;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const Wrapper = styled.div`
   height: 100vh;

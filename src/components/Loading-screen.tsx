@@ -18,12 +18,12 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDots(dots => dots.length < 3 ? dots + '.' : '.');
-    }, 100);
+      setDots((dots) => (dots.length < 3 ? dots + '.' : '.'));
+    }, 150);
 
     return () => clearInterval(interval);
-  }, [])
-  
+  }, []);
+
   return (
     <Wrapper>
       <Text>Loading{dots}</Text>
